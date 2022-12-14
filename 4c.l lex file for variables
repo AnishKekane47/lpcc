@@ -1,0 +1,28 @@
+%{
+#include<stdio.h>
+#include "y.tab.h"
+%}
+
+%%
+new return NEW;
+"[" return OPEN_SQ;
+"]" return CLOSE_SQ;
+"=" return EQ;
+"," return COMMA;
+"_" return UD;
+(["\t"])+ return WS;
+[a-zA-Z]+[a-zA-Z0-9]* return ID;
+[0-9]+ return DIGIT;
+\n return 0;
+%%
+
+//cd lpcc
+gedit 4a.l
+gedit 4a.y
+lex 4a.l
+yacc -d 4a.y
+cc lex.yy.c y.tab.c
+/.a.out
+Input: max
+    abc
+    xyz
